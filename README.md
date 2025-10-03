@@ -34,7 +34,7 @@ Cílem je vytvořit program, který bude importovat bankovní transakce ze soubo
 
 Vaším úkolem je vytvořit jednoduché REST API pro správu knih. Pomocí API lze prohlížet existující knihy, vytvářet nové a upravovat a mazat existující.
 
-# Úkol 9: Web scraping
+## Úkol 9: Web scraping
 
 Vaším úkolem je vytvořit scraper produktů z e-shopů: https://bi-php.urbanec.cz
 
