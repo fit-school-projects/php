@@ -1,0 +1,20 @@
+{
+  "name": "cvut/bi-php-hw-05",
+  "description": "HW-05 for BI-PHP",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    },
+    "classmap": ["tests"]
+  },
+  "require-dev": {
+    "php": "^8.2",
+    "phpunit/phpunit": "^10.3",
+    "dompdf/dompdf": "2.0.3",
+    "twig/twig": "^3.0"
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit tests"
+  }
+}

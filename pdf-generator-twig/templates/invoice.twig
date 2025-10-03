@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Faktura - Doklad {{ invoice.number }}</title>
+    <style>
+        body { font-family: Calibri, sans-serif; }
+        .invoice-credentials-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .invoice-credential {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 50px 40px;
+        }
+
+        .items-table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .items-table th, .items-table td {
+            padding: 4px;
+            border: 1px solid black;
+        }
+
+        .items-table td {
+            text-align: right;
+        }
+
+        .items-table th, .items-table td:first-child {
+            text-align: left;
+        }
+
+        .total-line {
+            text-align: right;
+            border: 1px solid black;
+        }
+
+        .total-value {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="invoice-box">
+    <p>FAKTURA – DOKLAD c. {{ invoice.number }}</p>
+    <table class="invoice-credentials-table">
+        <tr>
+            <td class="invoice-credential" valign="top">
+                <strong>Dodavatel</strong><br><br>
+                {{ invoice.supplier.name }}<br>
+                {{ invoice.supplier.address.street }} {{ invoice.supplier.address.number }}<br>
+                {{ invoice.supplier.address.zipCode }} {{ invoice.supplier.address.city }}<br>
+                <br>
+                {{ invoice.supplier.vatNumber }}
+                <br>
+                {% if invoice.supplier.address.phone %}
+                    <br>Tel: {{ invoice.supplier.address.phone }}
+                {% endif %}
+                {% if invoice.supplier.address.email %}
+                    <br>Email: {{ invoice.supplier.address.email }}
+                {% endif %}
+            </td>
+            <td class="invoice-credential" valign="top">
+                <strong>Odberatel</strong><br><br>
+                {{ invoice.customer.name }}<br>
+                {{ invoice.customer.address.street }} {{ invoice.customer.address.number }}<br>
+                {{ invoice.customer.address.zipCode }} {{ invoice.customer.address.city }}<br>
+                <br>
+                {{ invoice.customer.vatNumber }}
+                <br>
+                {% if invoice.customer.address.phone %}
+                    <br>Tel: {{ invoice.customer.address.phone }}
+                {% endif %}
+                {% if invoice.customer.address.email %}
+                    <br>Email: {{ invoice.customer.address.email }}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+    <table class="items-table">
+        <thead>
+        <tr>
+            <th>Polozka</th>
+            <th>Pocet m.j.</th>
+            <th>Cena za m.j.</th>
+            <th>Celkem</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in invoice.items %}
+            <tr>
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.unitPrice | number_format(2, ',', ' ') }}</td>
+                <td>{{ item.getTotalPrice() | number_format(2, ',', ' ') }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3" class="total-line"><strong>Celkem</strong></td>
+            <td class="total-value"><strong>{{ invoice.getTotalPrice() | number_format(2, ',', ' ') }}</strong></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

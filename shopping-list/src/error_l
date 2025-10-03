@@ -1,0 +1,11 @@
+[20-Dec-2023 17:42:19 Europe/Prague] Xdebug: [Step Debug] Could not connect to debugging client. Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port).
+[20-Dec-2023 17:42:19 Europe/Prague] PHP Warning:  file_get_contents(input/1.txt): Failed to open stream: No such file or directory in /var/www/html/src/shopping.php on line 49
+[20-Dec-2023 17:42:19 Europe/Prague] PHP Stack trace:
+[20-Dec-2023 17:42:19 Europe/Prague] PHP   1. {main}() /var/www/html/src/shopping.php:0
+[20-Dec-2023 17:42:19 Europe/Prague] PHP   2. file_get_contents($filename = 'input/1.txt') /var/www/html/src/shopping.php:49
+[20-Dec-2023 17:42:19 Europe/Prague] PHP Fatal error:  Uncaught TypeError: trim(): Argument #1 ($string) must be of type string, bool given in /var/www/html/src/shopping.php:49
+Stack trace:
+#0 /var/www/html/src/shopping.php(49): trim(false)
+#1 {main}
+  thrown in /var/www/html/src/shopping.php on line 49
+[20-Dec-2023 17:42:37 Europe/Prague] Xdebug: [Step Debug] Could not connect to debugging client. Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port).
